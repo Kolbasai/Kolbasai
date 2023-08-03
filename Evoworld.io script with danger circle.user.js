@@ -3,7 +3,7 @@
 // @name:ru      Evoworld.io скрипт с кругом опасности
 // @namespace    https://discord.gg/kfvFYwjSrx
 // @version      1.3
-// @author       jmatg1 VC clan
+// @author       jmatg1 and VC clan
 // @match        https://evoworld.io/
 // @icon         https://i.imgur.com/DnLttR6.png
 // @grant        none
