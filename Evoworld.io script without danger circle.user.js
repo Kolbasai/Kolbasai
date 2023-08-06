@@ -244,7 +244,7 @@
                     }
                 }
             }
-            if (value.nick === "-" && game.me.nick !== "-") {
+            if (value.nick === "-") {
                 value.opacity = 0;
                 value.visible = 0;
                 hello();
