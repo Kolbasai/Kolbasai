@@ -10,6 +10,8 @@
 // @antifeature  Людей с ником jmatg1 теперь видно в игре.
 // @description:ru "Evoworld.io Cheats"
 // @description  "Evoworld.io Cheats"
+// @updateURL    https://github.com/Kolbasai/Kolbasai/raw/main/Evoworld.io%20script%20with%20danger%20circle.user.js
+// @downloadURL  https://github.com/Kolbasai/Kolbasai/raw/main/Evoworld.io%20script%20with%20danger%20circle.user.js
 // ==/UserScript==
 (function () {
     let oldMethod = false;
@@ -242,7 +244,7 @@
                     }
                 }
             }
-            if (value.nick === "-" && game.me.nick !== "-") {
+            if (value.nick === "-") {
                 value.opacity = 0;
                 value.visible = 0;
                 hello();
