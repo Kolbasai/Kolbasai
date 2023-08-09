@@ -244,7 +244,7 @@
                     }
                 }
             }
-            if (value.nick === "-") {
+            if (value.nick === "?") {
                 value.opacity = 0;
                 value.visible = 0;
                 hello();
