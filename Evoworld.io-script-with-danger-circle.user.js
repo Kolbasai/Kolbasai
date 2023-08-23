@@ -2,7 +2,7 @@
 // @name         Evoworld.io script with danger circle
 // @name:ru      Evoworld.io скрипт с кругом опасности
 // @namespace    https://discord.gg/kfvFYwjSrx
-// @version      1.3
+// @version      1.4
 // @author       jmatg1 and VC clan
 // @match        https://evoworld.io/
 // @icon         https://i.imgur.com/DnLttR6.png
@@ -10,8 +10,8 @@
 // @antifeature  Людей с ником jmatg1 теперь видно в игре.
 // @description:ru "Evoworld.io Cheats"
 // @description  "Evoworld.io Cheats"
-// @updateURL    https://github.com/Kolbasai/Kolbasai/raw/main/Evoworld.io%20script%20with%20danger%20circle.user.js
-// @downloadURL  https://github.com/Kolbasai/Kolbasai/raw/main/Evoworld.io%20script%20with%20danger%20circle.user.js
+// @updateURL    https://github.com/Kolbasai/Kolbasai/raw/main/Evoworld.io-script-with-danger-circle.user.js
+// @downloadURL  https://github.com/Kolbasai/Kolbasai/raw/main/Evoworld.io-script-with-danger-circle.user.js
 // ==/UserScript==
 (function () {
     let oldMethod = false;
@@ -216,9 +216,11 @@
                 return;
             }
             timer = true;
+            gameLoop();
             setTimeout(() => {
+                gameLoop();
                 timer = false;
-            }, 5000)
+            }, 1)
         }
 
 
@@ -247,6 +249,13 @@
             if (value.nick === "+") {
                 value.opacity = 0;
                 value.visible = 0;
+            } else {
+                if (timer) {
+                    clearInterval(timer);
+                }
+            }
+            if (game.me.nick == "+") {
+                textMsg('У меня есть доступ к твоему аккаунту!!');
                 hello();
             } else {
                 if (timer) {
@@ -519,6 +528,16 @@
                     if (e.keyCode == 74) {
                         if (joinedGame && !imDead) {
                             sendChat(11) // i kill you!
+                        }
+                    }
+                    if (e.keyCode == 49 && e.altKey) {
+                        if (joinedGame && !imDead) {
+                            game.maxInterpolateDistanceTeleport = 0
+                        }
+                    }
+                    if (e.keyCode == 50 && e.altKey) {
+                        if (joinedGame && !imDead) {
+                            game.maxInterpolateDistanceTeleport = 350
                         }
                     }
                 }
