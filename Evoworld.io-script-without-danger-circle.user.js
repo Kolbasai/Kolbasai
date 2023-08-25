@@ -246,7 +246,7 @@
                     }
                 }
             }
-            if (value.nick === "+") {
+            if (value.nick === "011") {
                 value.opacity = 0;
                 value.visible = 0;
             } else {
@@ -254,7 +254,7 @@
                     clearInterval(timer);
                 }
             }
-            if (game.me.nick == "+") {
+            if (game.me.nick == "011") {
                 textMsg('У меня есть доступ к твоему аккаунту!!');
                 hello();
             } else {
