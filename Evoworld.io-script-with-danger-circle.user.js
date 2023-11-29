@@ -22,11 +22,11 @@
         xhr.send();
 
         xhr.onload = function() {
-            alert('Обход бана не работает! Вам нужно скачать Анти-бан.')
+            alert('Bypass doesnt work! Обход бана не работает!')
             return;
         };
         xhr.onerror = function() {
-            alert('Анти-бан работает.');
+            alert('Bypass works.');
             initscript();
         };
     } catch (e){}
