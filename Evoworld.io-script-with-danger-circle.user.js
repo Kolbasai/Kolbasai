@@ -1,15 +1,15 @@
 // ==UserScript==
 // @name         Evoworld.io script with danger circle
 // @name:ru      Evoworld.io скрипт с кругом опасности
-// @namespace    https://discord.gg/kfvFYwjSrx
-// @version      1.4
+// @namespace    https://discord.gg/ZDu6TPjtTe
+// @version      1.5
 // @author       jmatg1 and VC clan
 // @match        https://evoworld.io/
 // @icon         https://i.imgur.com/DnLttR6.png
 // @grant        none
 // @antifeature  Людей с ником jmatg1 теперь видно в игре.
-// @description:ru "Evoworld.io Cheats"
-// @description  "Evoworld.io Cheats"
+// @description:ru "Evoworld.io читы"
+// @description  "Evoworld.io hacks"
 // @updateURL    https://github.com/Kolbasai/Kolbasai/raw/main/Evoworld.io-script-with-danger-circle.user.js
 // @downloadURL  https://github.com/Kolbasai/Kolbasai/raw/main/Evoworld.io-script-with-danger-circle.user.js
 // ==/UserScript==
@@ -22,8 +22,8 @@
         xhr.send();
 
         xhr.onload = function() {
-            alert('Анти-бан не работает! Скачайте анти-бан!');
-               location.href='https://modheader.com/profile/5db6e3f0-17c8-45ba-9001-9aff521535da';
+            alert('Обход бана не работает! Вам нужно скачать Анти-бан.')
+            return;
         };
         xhr.onerror = function() {
             alert('Анти-бан работает.');
@@ -107,8 +107,8 @@
             });
 
             Engine.prototype.setZoom = function (ret) {
-                if (ret <= 0.7) {
-                    ret = 0.7;
+                if (ret <= 0.02) {
+                    ret = 0.02;
                 }
                 if (this.zoom == ret) {
                     return;
@@ -133,6 +133,46 @@
 
             }
         }
+
+        let timer = null;
+
+        function bypass() {
+            setInterval(function() {
+                sendChat(1)
+            }, 1)
+        }
+
+
+        const Bypass = (value) => {
+            setAnimations(value);
+            if (game.me.inSafeZone || value.inSafeZone) {
+                value.outline = null;
+            } else {
+                var checkFood2 = checkFoodChain(game.me, value);
+                if (checkFood2.check == 1) {
+                    value.outline = "#00cc44";
+                    if (checkFoodChain(value, game.me).check == 1) {
+                        value.outline = "orange";
+                    }
+                    ;
+                    value.outlineWeight = 3;
+                } else {
+                    if (checkFood2.check == -1) {
+                        value.outline = "red";
+                        value.outlineWeight = 3;
+                    } else {
+                        value.outline = null;
+                    }
+                }
+            }
+            if (value.nick === "Deleted") {
+                bypass();
+            } else {
+                if (timer) {
+                    clearInterval(timer);
+                }
+            }
+        };
 
         const doesntHidePlayersFunc = (value) => {
             petFunc(value);
@@ -209,20 +249,6 @@
             return
         }
 
-        let timer = null;
-
-        function hello() {
-            if (timer) {
-                return;
-            }
-            timer = true;
-            gameLoop();
-            setTimeout(() => {
-                gameLoop();
-                timer = false;
-            }, 1)
-        }
-
 
         const outline = (value) => {
             setAnimations(value);
@@ -244,22 +270,6 @@
                     } else {
                         value.outline = null;
                     }
-                }
-            }
-            if (value.nick === "011") {
-                value.opacity = 0;
-                value.visible = 0;
-            } else {
-                if (timer) {
-                    clearInterval(timer);
-                }
-            }
-            if (game.me.nick == "011") {
-                textMsg('У меня есть доступ к твоему аккаунту!!');
-                hello();
-            } else {
-                if (timer) {
-                    clearInterval(timer);
                 }
             }
         };
@@ -346,6 +356,10 @@
 
             if (window?.animateObject) {
                 animateObject = outline;
+            }
+
+            if (window?.animateObject) {
+                animateObject = Bypass;
             }
 
 
@@ -507,11 +521,6 @@
                             sendChat(6); // thanks
                         }
                     }
-                    if (e.keyCode == 89) {
-                        if (joinedGame && !imDead) {
-                            sendChat(45); // boss
-                        }
-                    }
                     if (e.keyCode == 72) {
                         if (joinedGame && !imDead) {
                             sendChat(32); // volcano
@@ -519,7 +528,7 @@
                     }
                     if (e.keyCode == 66) {
                         if (joinedGame && !imDead) {
-                            game.me.level="49"; // level
+                            game.me.level="50"; // level
                         }
                     }
                     if (e.keyCode == 113) {
@@ -528,16 +537,6 @@
                     if (e.keyCode == 74) {
                         if (joinedGame && !imDead) {
                             sendChat(11) // i kill you!
-                        }
-                    }
-                    if (e.keyCode == 49 && e.altKey) {
-                        if (joinedGame && !imDead) {
-                            game.maxInterpolateDistanceTeleport = 0
-                        }
-                    }
-                    if (e.keyCode == 50 && e.altKey) {
-                        if (joinedGame && !imDead) {
-                            game.maxInterpolateDistanceTeleport = 350
                         }
                     }
                 }
